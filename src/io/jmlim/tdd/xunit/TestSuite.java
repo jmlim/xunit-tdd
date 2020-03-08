@@ -14,7 +14,8 @@ public class TestSuite implements Test {
                 .filter(m -> AnnotationUtils.findAnnotation(m, io.jmlim.tdd.xunit.annotation.Test.class) != null)
                 .forEach(m -> {
                     try {
-                        testClass.getConstructor(String.class).newInstance(m.getName());
+                        Test test = testClass.getConstructor(String.class).newInstance(m.getName());
+                        tests.add(test);
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
